@@ -14,7 +14,7 @@ def get_model(algo, INPUT_LEN, dim):
     if algo == 'lstm':
         model = get_lstm(INPUT_LEN, dim)
     elif algo == 'seq':
-        model = get_seq2seq(INPUT_LEN, dim)
+        model = get_seq2seq(INPUT_LEN, TARGET_LEN, dim)
     elif algo == 'seq_at':
         # print("need to be added")
         #model = get_seq2seq_attention(INPUT_LEN, dim) # does not work with tf 2+
@@ -36,12 +36,12 @@ def get_lstm(INPUT_LEN, dim):
     return model
 
 
-def get_seq2seq(INPUT_LEN, dim):
+def get_seq2seq(INPUT_LEN, TARGET_LEN, dim):
     hidden_size = 128
     model = Sequential()
     model.add(LSTM(hidden_size, input_shape=(INPUT_LEN, dim)))
     model.add(Dropout(0.2))
-    model.add(RepeatVector(INPUT_LEN))
+    model.add(RepeatVector(TARGET_LEN))
     model.add(LSTM(hidden_size, return_sequences=True))
     model.add(Dropout(0.2))
     model.add(Dense(hidden_size, activation=relu))
