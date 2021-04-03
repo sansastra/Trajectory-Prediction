@@ -49,7 +49,7 @@ if algo != 'albert':
     Y_train.shape = (Y_train.shape[0], INPUT_LEN, dim)
 
 # model
-model = get_model(algo, INPUT_LEN, dim)
+model = get_model(algo, INPUT_LEN, TARGET_LEN, dim)
 model.summary()
 # make predictions
 
