@@ -10,7 +10,7 @@ from tensorflow import keras
 # import bert
 
 
-def get_model(algo, INPUT_LEN, dim):
+def get_model(algo, INPUT_LEN, TARGET_LEN, dim):
     if algo == 'lstm':
         model = get_lstm(INPUT_LEN, dim)
     elif algo == 'seq':
