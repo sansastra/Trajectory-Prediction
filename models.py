@@ -16,7 +16,8 @@ def get_model(algo, INPUT_LEN, dim):
     elif algo == 'seq':
         model = get_seq2seq(INPUT_LEN, dim)
     elif algo == 'seq_at':
-        model = get_seq2seq_attention(INPUT_LEN, dim)
+        # print("need to be added")
+        #model = get_seq2seq_attention(INPUT_LEN, dim) # does not work with tf 2+
     # elif algo == 'albert':
     #     model = get_albert(INPUT_LEN, dim)
 
@@ -51,16 +52,16 @@ def get_seq2seq(INPUT_LEN, dim):
     return model
 
 
-def get_seq2seq_attention(INPUT_LEN, dim):
-    hidden_size = 128
-    model = Sequential()
-    model.add(LSTM(hidden_size, input_shape=(INPUT_LEN, dim), return_sequences=True))
-    model.add(LSTM(hidden_size, input_shape=(INPUT_LEN, dim), return_sequences=True))
-    model.add(LSTM(hidden_size, input_shape=(INPUT_LEN, dim), return_sequences=True))
-    model.add(AttentionDecoder(hidden_size, dim))
+# def get_seq2seq_attention(INPUT_LEN, dim):
+#     hidden_size = 128
+#     model = Sequential()
+#     model.add(LSTM(hidden_size, input_shape=(INPUT_LEN, dim), return_sequences=True))
+#     model.add(LSTM(hidden_size, input_shape=(INPUT_LEN, dim), return_sequences=True))
+#     model.add(LSTM(hidden_size, input_shape=(INPUT_LEN, dim), return_sequences=True))
+#     model.add(AttentionDecoder(hidden_size, dim))
 
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
-    return model
+#     model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+#     return model
 
 
 # def get_albert(INPUT_LEN, dim):
