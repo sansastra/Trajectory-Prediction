@@ -1,3 +1,5 @@
+# please refer here for any update: https://github.com/asmekal/keras-monotonic-attention/blob/master/attention_decoder.py
+# with tenserflow 2+ it does not work
 import tensorflow as tf
 from keras import backend as K
 from keras import regularizers, constraints, initializers, activations
